@@ -1,0 +1,134 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel>=0.42"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "academic-research-platform"
+version = "0.3.0"
+description = "Academic Research & Evidence Intelligence Platform"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary" }
+authors = [{ name = "Academic Platform Team" }]
+keywords = ["research", "literature", "evidence", "statistics", "desktop"]
+
+dependencies = [
+    "PySide6>=6.6.0",
+    "SQLAlchemy>=2.0.25",
+    "alembic>=1.13.0",
+    "pydantic>=2.6.0",
+    "httpx>=0.27.0",
+    "fastapi>=0.110.0",
+    "uvicorn>=0.29.0",
+    "numpy>=1.26.0",
+    "scipy>=1.12.0",
+    "pandas>=2.2.0",
+    "statsmodels>=0.14.0",
+    "PyMuPDF>=1.24.0",
+    "matplotlib>=3.8.0",
+    "tomli-w>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+    "pytest-qt>=4.4.0",
+    "ruff>=0.4.0",
+    "mypy>=1.9.0",
+]
+
+[project.scripts]
+academic-platform = "academic_platform.main:main"
+
+[project.urls]
+Documentation = "https://example.invalid/academic-platform/docs"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["academic_platform*"]
+
+[tool.setuptools.package-data]
+academic_platform = [
+    "ui/resources/**/*.qss",
+    "ui/resources/**/*.svg",
+    "ui/resources/**/*.png",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests", "scripts"]
+exclude = ["build", "dist", ".venv", ".eggs"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM", "RUF", "PTH"]
+ignore = [
+    "E501",
+    "B008",
+    "RUF001",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101"]
+"scripts/**/*.py" = ["E402"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+[tool.mypy]
+python_version = "3.11"
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+warn_unreachable = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_calls = false
+check_untyped_defs = true
+no_implicit_optional = true
+strict_optional = true
+ignore_missing_imports = false
+mypy_path = "src"
+exclude = [
+    "^build/",
+    "^dist/",
+    "^\\.venv/",
+]
+
+[[tool.mypy.overrides]]
+module = ["fitz.*", "statsmodels.*", "matplotlib.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra --strict-markers --strict-config"
+markers = [
+    "integration: marks tests requiring external services or resources",
+    "scientific: marks tests validating statistical correctness against references",
+    "ui: marks tests that construct Qt widgets",
+]
+
+[tool.coverage.run]
+source = ["academic_platform"]
+branch = true
+omit = [
+    "*/__init__.py",
+    "*/tests/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+]

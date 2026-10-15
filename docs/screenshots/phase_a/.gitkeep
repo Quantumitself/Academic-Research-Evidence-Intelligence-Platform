@@ -1,0 +1,4 @@
+The screenshot directory contains a .gitkeep file so the directory is
+tracked while remaining empty until the capture script is run. Actual PNG
+files are not committed; the manifest and the capture script together
+reproduce the record on demand.

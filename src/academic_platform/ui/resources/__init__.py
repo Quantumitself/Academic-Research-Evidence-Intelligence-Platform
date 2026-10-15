@@ -1,0 +1,1 @@
+"""Static resources loaded by the presentation layer."""

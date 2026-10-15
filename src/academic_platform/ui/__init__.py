@@ -1,0 +1,1 @@
+"""Presentation layer. All PySide6 usage is confined to this subpackage."""

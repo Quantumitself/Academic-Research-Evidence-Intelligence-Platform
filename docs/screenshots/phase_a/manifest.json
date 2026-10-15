@@ -1,0 +1,94 @@
+{
+  "application_version": "0.3.0",
+  "entries": [
+    {
+      "destination": "dashboard",
+      "file": "dashboard.png",
+      "label": "Dashboard",
+      "page_class": "DashboardPage",
+      "page_object_name": "dashboardPage"
+    },
+    {
+      "destination": "discover",
+      "file": "discover.png",
+      "label": "Discover",
+      "page_class": "GlobalSearchPage",
+      "page_object_name": "globalSearchPage"
+    },
+    {
+      "destination": "research_assistant",
+      "file": "research_assistant.png",
+      "label": "Research Assistant",
+      "page_class": "PlaceholderPage",
+      "page_object_name": "placeholderPage_research_assistant"
+    },
+    {
+      "destination": "research_projects",
+      "file": "research_projects.png",
+      "label": "Research Projects",
+      "page_class": "PlaceholderPage",
+      "page_object_name": "placeholderPage_research_projects"
+    },
+    {
+      "destination": "library",
+      "file": "library.png",
+      "label": "My Library",
+      "page_class": "PlaceholderPage",
+      "page_object_name": "placeholderPage_library"
+    },
+    {
+      "destination": "collections",
+      "file": "collections.png",
+      "label": "Collections",
+      "page_class": "PlaceholderPage",
+      "page_object_name": "placeholderPage_collections"
+    },
+    {
+      "destination": "evidence",
+      "file": "evidence.png",
+      "label": "Evidence & Analysis",
+      "page_class": "PlaceholderPage",
+      "page_object_name": "placeholderPage_evidence"
+    },
+    {
+      "destination": "guides",
+      "file": "guides.png",
+      "label": "Research Guides",
+      "page_class": "PlaceholderPage",
+      "page_object_name": "placeholderPage_guides"
+    },
+    {
+      "destination": "knowledge_map",
+      "file": "knowledge_map.png",
+      "label": "Knowledge Map",
+      "page_class": "PlaceholderPage",
+      "page_object_name": "placeholderPage_knowledge_map"
+    },
+    {
+      "destination": "achievements",
+      "file": "achievements.png",
+      "label": "Achievements",
+      "page_class": "PlaceholderPage",
+      "page_object_name": "placeholderPage_achievements"
+    },
+    {
+      "destination": "api_integrations",
+      "file": "api_integrations.png",
+      "label": "API & Integrations",
+      "page_class": "PlaceholderPage",
+      "page_object_name": "placeholderPage_api_integrations"
+    },
+    {
+      "destination": "settings",
+      "file": "settings.png",
+      "label": "Settings",
+      "page_class": "SettingsPage",
+      "page_object_name": "settingsPage"
+    }
+  ],
+  "generated_at": "2026-10-11T10:03:13.646151+00:00",
+  "window_size": [
+    1280,
+    800
+  ]
+}
