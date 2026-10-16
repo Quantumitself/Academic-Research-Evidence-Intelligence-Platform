@@ -4223,3 +4223,85 @@ section exposes actions to add, edit, remove, and promote questions.
 - The validation report describes the draft; it never blocks a write.
 - The service never commits. It runs inside a unit of work supplied by
   the caller.
+
+## Research History Workspace
+
+The research-history workspace lives in
+`academic_platform.application.research_history`. It is the first
+section of the research assistant that is explicitly search-backed: it
+proposes alternative queries from a topic and its synonyms, executes
+them against the search orchestration service, persists the retrieved
+results with provenance, and groups the results into a timeline and a
+set of themes.
+
+### Model
+
+- **`HistoryQuery`** — a single search query the workspace proposes
+  or the user records.
+- **`HistoryResult`** — a single retrieved publication with its
+  provenance.
+- **`HistorySearchRun`** — a single execution of a query against the
+  search orchestration service.
+- **`HistorySearchStatus`** — the outcome of a single run: ok,
+  partial, failed, or skipped.
+- **`HistoryTimelineBucket`** — a year-bucketed aggregation of
+  results.
+- **`HistoryTheme`** — a set of related results grouped by a shared
+  concept.
+- **`ResearchHistoryDraft`** — an immutable view of the workspace's
+  current state.
+
+### Service
+
+`ResearchHistoryService` composes the search orchestration service and
+the publication service. It reads and writes the workspace draft in
+the project's `project_metadata` JSON column under the
+`research_history_workspace` key. It never speaks HTTP directly.
+
+The service provides:
+
+- `attach_project(project_key)` — attach the workspace to a project.
+- `current_draft(project_key)` — return the current draft.
+- `propose_queries(project_key)` — return the queries the workspace
+  proposes for the topic. The proposal is deterministic for a given
+  topic and synonym set.
+- `set_topic`, `add_synonym`, `remove_synonym`, `add_user_query`,
+  `remove_user_query`, `set_narrative`, `clear` — write the workspace
+  state.
+- `run_query(project_key, query)` — execute a single query and
+  persist the run and its results.
+- `run_all(project_key)` — execute every proposed and user-defined
+  query.
+
+Every mutation records an audit event.
+
+### Search execution
+
+The service builds a `SearchOrchestrationRequest` with the query's
+text and the enabled source selection, executes it through the
+orchestrator, and persists the retrieved publications through the
+publication service. The run is recorded with its status and its
+per-source reports.
+
+The service never fabricates results. When a query fails, the run is
+recorded with a failure status and the source reports are preserved.
+
+### Timeline and themes
+
+The timeline groups results by year. The themes group results by a
+fixed set of keywords derived from titles, abstracts, and venues. Both
+aggregations are deterministic: the same results produce the same
+timeline and themes on every run.
+
+### Design rules
+
+- The service is deterministic for a given topic, synonym set, and
+  search response.
+- The service never calls an AI provider. Rules-based grouping is
+  deterministic and auditable.
+- The service never commits. It runs inside a unit of work supplied by
+  the caller.
+- The service persists the workspace state in the project's metadata.
+  It does not create a dedicated table for the workspace.
+- The narrative is user-authored. The workspace never generates
+  narrative text.

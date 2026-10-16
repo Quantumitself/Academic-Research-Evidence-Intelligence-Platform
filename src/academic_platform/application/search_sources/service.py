@@ -61,7 +61,12 @@ from academic_platform.infrastructure.search_providers.registry import (
 from academic_platform.infrastructure.search_providers.url_validator import (
     validate_url,
 )
-from academic_platform.application.publications.service import PublicationService
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from academic_platform.application.publications.service import (
+        PublicationService,
+    )
+
 
 
 _logger = logging.getLogger(__name__)
@@ -86,6 +91,9 @@ class SearchSourceService:
         allow_http: bool = False,
         allow_loopback: bool = False,
     ) -> None:
+        from academic_platform.application.publications.service import (
+            PublicationService,
+        )
         self._repositories = repositories
         self._registry = registry
         self._allow_http = allow_http
@@ -95,7 +103,6 @@ class SearchSourceService:
 
     @property
     def publications(self) -> PublicationService:
-        """Return the publication service bound to the same repositories."""
         return self._publications
 
     @property

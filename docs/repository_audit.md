@@ -1,12 +1,12 @@
 # Repository Audit
 
-Generated: 2026-10-15 15:30:34 UTC
+Generated: 2026-10-16 04:40:13 UTC
 
 ## Summary
 
-- Tracked files: 729
-- Python modules under `src/`: 360
-- Modules missing a docstring: 1
+- Tracked files: 734
+- Python modules under `src/`: 361
+- Modules missing a docstring: 0
 
 ## Python Modules
 
@@ -88,7 +88,8 @@ Generated: 2026-10-15 15:30:34 UTC
 | `academic_platform.application.publications.service` | yes | 4 |
 | `academic_platform.application.research_history` | yes | 0 |
 | `academic_platform.application.research_history.errors` | yes | 4 |
-| `academic_platform.application.research_history.model` | **no** | 0 |
+| `academic_platform.application.research_history.model` | yes | 19 |
+| `academic_platform.application.research_history.service` | yes | 13 |
 | `academic_platform.application.research_questions` | yes | 0 |
 | `academic_platform.application.research_questions.errors` | yes | 3 |
 | `academic_platform.application.research_questions.model` | yes | 17 |
@@ -312,7 +313,7 @@ Generated: 2026-10-15 15:30:34 UTC
 | `academic_platform.ui.dialogs.progress_dialog` | yes | 9 |
 | `academic_platform.ui.dialogs.project_export_dialog` | yes | 2 |
 | `academic_platform.ui.dialogs.prompt_dialog` | yes | 4 |
-| `academic_platform.ui.main_window` | yes | 33 |
+| `academic_platform.ui.main_window` | yes | 34 |
 | `academic_platform.ui.main_window_destinations` | yes | 3 |
 | `academic_platform.ui.navigation` | yes | 0 |
 | `academic_platform.ui.navigation.navigation_bar` | yes | 3 |
@@ -337,7 +338,7 @@ Generated: 2026-10-15 15:30:34 UTC
 | `academic_platform.ui.pages.reader.reader_page` | yes | 10 |
 | `academic_platform.ui.pages.reader.search_panel` | yes | 5 |
 | `academic_platform.ui.pages.research_assistant` | yes | 0 |
-| `academic_platform.ui.pages.research_assistant.assistant_page` | yes | 15 |
+| `academic_platform.ui.pages.research_assistant.assistant_page` | yes | 17 |
 | `academic_platform.ui.pages.research_assistant.section_base` | yes | 7 |
 | `academic_platform.ui.pages.research_assistant.section_host` | yes | 5 |
 | `academic_platform.ui.pages.research_assistant.sections` | yes | 1 |
@@ -445,6 +446,7 @@ Generated: 2026-10-15 15:30:34 UTC
 - `migrations/versions/0009_fts5_index.py`
 - `migrations/versions/0010_task_workflow_columns.py`
 - `migrations/versions/__init__.py`
+- `phase67_context.txt`
 - `pyproject.toml`
 - `README.md`
 - `scripts/__init__.py`
@@ -537,6 +539,7 @@ Generated: 2026-10-15 15:30:34 UTC
 - `src/academic_platform/application/research_history/__init__.py`
 - `src/academic_platform/application/research_history/errors.py`
 - `src/academic_platform/application/research_history/model.py`
+- `src/academic_platform/application/research_history/service.py`
 - `src/academic_platform/application/research_questions/__init__.py`
 - `src/academic_platform/application/research_questions/errors.py`
 - `src/academic_platform/application/research_questions/model.py`
@@ -905,6 +908,7 @@ Generated: 2026-10-15 15:30:34 UTC
 - `tests/unit/test_fts_rebuilder.py`
 - `tests/unit/test_global_search_page.py`
 - `tests/unit/test_handoff_store.py`
+- `tests/unit/test_history_section_workspace.py`
 - `tests/unit/test_http_client.py`
 - `tests/unit/test_http_client_config.py`
 - `tests/unit/test_http_client_factory.py`
@@ -924,6 +928,7 @@ Generated: 2026-10-15 15:30:34 UTC
 - `tests/unit/test_main_window_assistant_wiring.py`
 - `tests/unit/test_main_window_collections_wiring.py`
 - `tests/unit/test_main_window_destinations.py`
+- `tests/unit/test_main_window_history_workspace.py`
 - `tests/unit/test_main_window_linking.py`
 - `tests/unit/test_main_window_notifications.py`
 - `tests/unit/test_main_window_projects_wiring.py`
@@ -1039,6 +1044,7 @@ Generated: 2026-10-15 15:30:34 UTC
 - `tests/unit/test_repository_user_profile.py`
 - `tests/unit/test_research_assistant_page.py`
 - `tests/unit/test_research_assistant_sections.py`
+- `tests/unit/test_research_history_service.py`
 - `tests/unit/test_research_project_card.py`
 - `tests/unit/test_research_question_workspace.py`
 - `tests/unit/test_saved_search_model.py`

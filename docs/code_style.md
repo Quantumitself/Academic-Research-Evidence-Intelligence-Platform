@@ -1568,3 +1568,29 @@ migrations directory only.
 - Promoting a question clears the previous primary flag and updates
   the workspace metadata's primary question text in the same
   operation.
+
+## Research History Workspace Conventions
+
+- The research-history workspace lives in
+  `academic_platform.application.research_history`. It never imports
+  Qt.
+- The service composes the search orchestration service and the
+  publication service. It never speaks HTTP directly.
+- The service never fabricates results. When a query fails, the run is
+  recorded with a failure status and the source reports are preserved.
+- The service persists the workspace state in the project's
+  `project_metadata` JSON column under the
+  `research_history_workspace` key. The key is stable; renaming it is a
+  breaking change.
+- The query identifier is a stable hash of the query text. The same
+  text yields the same identifier on every run.
+- The proposal of alternative queries is deterministic for a given
+  topic and synonym set. The proposal applies a fixed set of templates.
+- Themes are grouped by a fixed set of keywords. The keyword set is
+  declared in the service module and is covered by tests.
+- The timeline groups results by year. Results without a year are not
+  bucketed.
+- The narrative is user-authored. The workspace never generates
+  narrative text.
+- The presentation layer never inspects the search orchestration
+  service directly. The service owns the transport.
